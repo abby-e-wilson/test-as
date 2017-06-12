@@ -7,7 +7,7 @@
     tools:context="wilson.abby.test.MainActivity">
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/TextInput"
         android:layout_width="0dp"
         android:layout_height="77dp"
         android:ems="10"
@@ -24,8 +24,9 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:onClick="sendMessage"
         android:text="@string/button_send"
         app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>
