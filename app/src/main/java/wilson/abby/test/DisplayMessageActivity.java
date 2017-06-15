@@ -3,17 +3,15 @@ package wilson.abby.test;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
-
-import static android.content.pm.PackageManager.MATCH_DEFAULT_ONLY;
 
 public class DisplayMessageActivity extends AppCompatActivity {
     private static final int PHOTO_REQUEST_CODE = 1;
@@ -36,7 +34,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
     public void takePhotoIntent(View view){
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        // Verify it resolves
+        // Verify there is a camera app
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(camera, 0);
         boolean isIntentSafe = activities.size() > 0;
@@ -49,14 +47,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         // Check which request we're responding to
-        if (requestCode == PHOTO_REQUEST_CODE) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                Uri returned = data.getData();
-//                TextView text = (TextView) findViewById(R.id.textView2);
-//                text.setText(returned.toString());
-            }
+        if (requestCode == PHOTO_REQUEST_CODE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ImageView iv = (ImageView) findViewById(R.id.imageView);
+            iv.setImageBitmap(imageBitmap);
         }
-
     }
 }

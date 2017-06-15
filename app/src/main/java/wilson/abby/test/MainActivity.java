@@ -20,6 +20,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements HeadlineFragment.OnHeadlineSelectedListener {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private File datafile;
+    private String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements HeadlineFragment.
         edit.clear().apply();
 
         //create the datafile
-        String filename = "entered_message.txt";
+        filename = "entered_message.txt";
         datafile = new File(getFilesDir(), filename);
     }
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements HeadlineFragment.
 
         //writing to file
         try {
-           // fops = openFileOutput(filename, MODE_PRIVATE);
+            fops = openFileOutput(filename, MODE_PRIVATE);
             fops.write(message.getBytes());
         } catch (Exception e){
             e.printStackTrace();
