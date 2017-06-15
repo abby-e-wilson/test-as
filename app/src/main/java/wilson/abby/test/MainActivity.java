@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements HeadlineFragment.
             // Create a new Fragment to be placed in the activity layout
             android.support.v4.app.Fragment firstFragment = new android.support.v4.app.Fragment();
             ArticleFragment af = new ArticleFragment();
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
             firstFragment.setArguments(getIntent().getExtras());
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             // Add the fragment to the 'fragment_container' FrameLayout
@@ -126,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements HeadlineFragment.
     @Override
     public void onPause() {
         super.onPause();
-
         //save preferences (in this case, a simple string as there are no preference options)
         SharedPreferences pref = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
